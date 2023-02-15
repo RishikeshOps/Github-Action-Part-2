@@ -1,0 +1,19 @@
+name: 'Deployment'
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME}}
+
+jobs:
+   Docker-Run:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name:Docker-Run
+        run: |
+          docker run -d -p 5000:5000 $DOCKERHUB_USERNAME/$REPOSITORY_NAME
