@@ -10,10 +10,12 @@ env:
   REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME}}
 
 jobs:
-   Docker-Run:
+  Docker-Run:
+   # needs:
+    # -
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - name:Docker-Run
+      - name: Docker-Run
         run: |
           docker run -d -p 5000:5000 $DOCKERHUB_USERNAME/$REPOSITORY_NAME
